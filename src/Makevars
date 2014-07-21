@@ -1,0 +1,11 @@
+DLOBJECTS=\
+./deeplearning/dA.o \
+./deeplearning/DBN.o \
+./deeplearning/SdA.o \
+./deeplearning/HiddenLayer.o \
+./deeplearning/LogisticRegression.o \
+./deeplearning/RBM.o
+
+RCPPDL= RcppExports.o rcpp_dbn.o conversion.o
+
+OBJECTS= $(RCPPDL) $(DLOBJECTS)

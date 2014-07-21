@@ -5,6 +5,8 @@
 
 int ** RcppMatrixToC2DArray(Rcpp::IntegerMatrix& in);
 
+int * RcppVectorToCArray(Rcpp::IntegerVector& in);
+
 Rcpp::NumericMatrix CMatrixToRcppMatrix(int nbSample, int pbDimension, double** matrix);
 
 #endif
