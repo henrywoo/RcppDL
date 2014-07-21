@@ -1,3 +1,3 @@
 RcppDL: Rcpp deep learning library
 ======
-R binding of Yusuke Sugomori's deep learning library using Rcpp
+R binding of Yusuke Sugomori's [deep learning library](https://github.com/yusugomori/DeepLearning) using Rcpp
