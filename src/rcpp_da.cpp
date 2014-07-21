@@ -5,7 +5,6 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 List rcpp_dA(double learning_rate, double corruption_level, int training_epochs, int n_visible, int n_hidden, IntegerMatrix train, IntegerMatrix test) {
-	srand(0);
 
   vector<vector<int> > train_X = RcppMatrixToC2DArray(train);
 
