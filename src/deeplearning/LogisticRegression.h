@@ -4,21 +4,20 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include "utils.h"
 
-class LogisticRegression
-{
+class LogisticRegression {
 
-public:
-    int N;  // num of inputs
-    int n_in;
-    int n_out;
-    double **W;
-    double *b;
-    LogisticRegression(int, int, int);
-    ~LogisticRegression();
-    void train(int*, int*, double);
-    void softmax(double*);
-    void predict(int*, double*);
+ public:
+  int N;
+  int n_in;
+  int n_out;
+  vector<vector<double> > W;
+  vector<double> b;
+  LogisticRegression(int, int, int);
+  void train(int*, int*, double);
+  void softmax(vector<double>&);
+  void predict(int*, vector<double>&);
 };
 
 #endif

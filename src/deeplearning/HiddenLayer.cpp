@@ -64,3 +64,9 @@ void HiddenLayer::sample_h_given_v(int *input, int *sample)
         sample[i] = binomial(1, output(input, W[i], b[i]));
     }
 }
+
+//int main()
+//{
+//    return 0;
+//}
+
