@@ -1,5 +1,44 @@
-RcppDL: Rcpp deep learning library
+RcppDL: deep learning library using Rcpp
 ======
-R binding of Yusuke Sugomori's [deep learning library](https://github.com/yusugomori/DeepLearning) using Rcpp
 
-Qiang Kou (qkou@umail.iu.edu)
+The C++ code in this package is modified from Yusuke Sugomori's deep learning library([original code](https://github.com/yusugomori/DeepLearning), [modified code](https://github.com/thirdwing/DeepLearning/tree/master/cpp)), and integrated with R using Rcpp.
+
+
+
+### Methods :
+
+  - DBN:  Deep Belief Nets
+
+  - CDBN: Deep Belief Nets w/ continuous-valued inputs 
+
+  - RBM:  Restricted Boltzmann Machine
+
+  - CRBM: Restricted Boltzmann Machine w/ continuous-valued inputs
+
+  - dA:   Denoising Autoencoders
+
+  - SdA:  Stacked Denoising Autoencoders
+
+  - LogisticRegression: Logistic Regression
+
+  - HiddenLayer: Hidden Layer of Neural Networks
+
+### References :
+  - Y. Bengio, P. Lamblin, D. Popovici, H. Larochelle: Greedy Layer-Wise
+  Training of Deep Networks, Advances in Neural Information Processing
+  Systems 19, 2007
+
+  - P. Vincent, H. Larochelle, Y. Bengio, P.A. Manzagol: Extracting and
+  Composing Robust Features with Denoising Autoencoders, ICML' 08, 1096-1103,
+  2008
+
+
+  - DeepLearningTutorials
+  https://github.com/lisa-lab/DeepLearningTutorials
+
+  - Yusuke Sugomori: Stochastic Gradient Descent for Denoising Autoencoders,
+  http://yusugomori.com/docs/SGD_DA.pdf
+
+###To do
+
+ Rewrite C++ code with STL and share_ptr to avoid manual management of memory.
