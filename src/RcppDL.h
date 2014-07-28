@@ -9,13 +9,13 @@ namespace Rcpp {
 		int nrow = INTEGER(dim)[0]; 
 		int ncol = INTEGER(dim)[1]; 
 		int ** res;
-		int * p = INTEGER(x); 
-		res = new int*[nrow];    
+		double * p = REAL(x); 
+		res = new int*[nrow];
 		int i,j; 
 		for( i=0; i<nrow; i++){ 
 			res[i] = new int[ncol];
 			for( j=0; j<ncol; j++){ 
-				res[i][j] = p[i+nrow*j]; 
+				res[i][j] = (int)p[i+nrow*j]; 
 			}      
 		} 
 		return res;	
