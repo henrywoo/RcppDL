@@ -1,7 +1,7 @@
-RcppDL: deep learning library using Rcpp
+RcppDL: deep learning using Rcpp
 ======
 
-The C++ code in this package is modified from Yusuke Sugomori's deep learning library([original code](https://github.com/yusugomori/DeepLearning), [modified code](https://github.com/thirdwing/DeepLearning/tree/master/cpp)), and integrated with R using Rcpp.
+The C++ code in this package is modified from Yusuke Sugomori's [deep learning library](https://github.com/yusugomori/DeepLearning) and integrated with R using Rcpp.
 
 
 
