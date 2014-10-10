@@ -38,7 +38,3 @@ The [C++ code](https://github.com/thirdwing/DeepLearning) in this package is mod
 
   - Yusuke Sugomori: Stochastic Gradient Descent for Denoising Autoencoders,
   http://yusugomori.com/docs/SGD_DA.pdf
-
-###To do
-
- Rewrite C++ code with STL and share_ptr to avoid manual management of memory.
