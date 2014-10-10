@@ -1,9 +1,6 @@
 #ifndef HIDDEN_H_
 #define HIDDEN_H_
 
-#include <iostream>
-#include <math.h>
-
 #include "utils.h"
 
 class HiddenLayer
@@ -20,5 +17,6 @@ public:
     double output(int*, double*, double);
     void sample_h_given_v(int*, int*);
 };
+
 
 #endif

@@ -1,6 +1,7 @@
 #ifndef RCPPDL_H_
 #define RCPPDL_H_
 
+#include <vector>
 #include <RcppCommon.h>
 
 namespace Rcpp
@@ -11,42 +12,41 @@ namespace Rcpp
         int nrow = INTEGER(dim)[0];
         int ncol = INTEGER(dim)[1];
         int ** res;
-        double * p = REAL(x);
+        int * p = INTEGER(x);
         res = new int*[nrow];
-        int i,j;
-        for( i=0; i<nrow; i++)
+        int i, j;
+        for(i = 0; i < nrow; i++)
         {
             res[i] = new int[ncol];
-            for( j=0; j<ncol; j++)
+            for(j = 0; j < ncol; j++)
             {
-                res[i][j] = (int)p[i+nrow*j];
+                res[i][j] = (int)p[i * ncol + j];
             }
         }
-        
         return res;
     }
-
-    template <> SEXP wrap(const std::vector<std::vector<double> > &object);
 }
 
 #include <Rcpp.h>
 
-namespace Rcpp
-{
+namespace Rcpp{
+	
+	NumericMatrix wrap(int ** m , int nrow, int ncol){
+			
+		std::vector<int> vec;
+	
+		for(int i = 0; i < nrow; i++)
+		{
+			for(int j = 0; j < ncol; j++)
+				vec.push_back(m[i][j]);
+		}
+        
+		Rcpp::NumericVector output = wrap(vec);
+        
+		output.attr("dim") = Dimension(nrow, ncol);
 
-    template <> inline SEXP wrap(const std::vector<std::vector<double> > &object)
-    {
-        std::vector<double> vec;
-        for(int i = 0; i < object.size(); i++)
-        {
-            vec.insert(vec.end(), object[i].begin(), object[i].end());
-        }
-        NumericVector output = wrap(vec);
-        
-        output.attr("dim") = Dimension(object[0].size(), object.size());
-        
-        return output;
-    }
+		return wrap(output);
+	}
 }
 
 #include "deeplearning/dA.h"

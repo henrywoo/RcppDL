@@ -1,6 +1,9 @@
 #ifndef RBM_H_
 #define RBM_H_
 
+#include <iostream>
+#include <cstdlib>
+
 #include "utils.h"
 
 class RBM

@@ -7,8 +7,6 @@
 #include <vector>
 #include <algorithm>
 
-using namespace std;
-
 inline double uniform(double min, double max)
 {
     return rand() / (RAND_MAX + 1.0) * (max - min) + min;

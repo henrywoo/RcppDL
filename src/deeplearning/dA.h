@@ -1,8 +1,6 @@
 #ifndef DA_H_
 #define DA_H_
 
-#include <cmath>
-
 #include "utils.h"
 
 class dA
@@ -15,7 +13,7 @@ public:
     double **W;
     double *hbias;
     double *vbias;
-    dA(int, int, int, double**, double*, double*);
+    dA(int, int, int , double**, double*, double*);
     ~dA();
     void get_corrupted_input(int*, int*, double);
     void get_hidden_values(int*, double*);

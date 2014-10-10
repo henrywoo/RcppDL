@@ -2,12 +2,12 @@
 #define DBN_H_
 
 #include <iostream>
-#include <cmath>
+#include <cstdlib>
 
+#include "utils.h"
 #include "HiddenLayer.h"
 #include "RBM.h"
 #include "LogisticRegression.h"
-#include "utils.h"
 
 class DBN
 {
@@ -25,7 +25,7 @@ public:
     ~DBN();
     void pretrain(int*, double, int, int);
     void finetune(int*, int*, double, int);
-    void predict(int*, vector<double>&);
+    void predict(int*, double*);
 };
 
 #endif
