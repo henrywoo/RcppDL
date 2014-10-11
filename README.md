@@ -1,6 +1,8 @@
 RcppDL: deep learning using Rcpp
 ======
 
+[![Build Status](https://magnum.travis-ci.com/thirdwing/RcppDL.svg?token=5n7xe4i4UCb3spCCpjsv&branch=master)](https://magnum.travis-ci.com/thirdwing/RcppDL)
+
 The [C++ code](https://github.com/thirdwing/DeepLearning) in this package is modified from Yusuke Sugomori's [deep learning library](https://github.com/yusugomori/DeepLearning) and integrated with R using Rcpp.
 
 
