@@ -23,8 +23,8 @@ public:
     LogisticRegression *log_layer;
     SdA(int, int, int*, int, int);
     ~SdA();
-    void pretrain(int*, double, double, int);
-    void finetune(int*, int*, double, int);
+    void pretrain(int**, double, double, int);
+    void finetune(int**, int**, double, int);
     void predict(int*, double*);
 };
 

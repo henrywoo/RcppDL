@@ -52,6 +52,32 @@ dA::dA(int size, int n_v, int n_h, double **w, double *hb, double *vb)
     }
 }
 
+dA::dA(int size, int n_v, int n_h)
+{
+    N = size;
+    n_visible = n_v;
+    n_hidden = n_h;
+
+    W = new double*[n_hidden];
+    for(int i=0; i<n_hidden; i++) W[i] = new double[n_visible];
+    double a = 1.0 / n_visible;
+
+    for(int i=0; i<n_hidden; i++)
+    {
+        for(int j=0; j<n_visible; j++)
+        {
+            W[i][j] = uniform(-a, a);
+        }
+    }
+
+    hbias = new double[n_hidden];
+    for(int i=0; i<n_hidden; i++) hbias[i] = 0;
+
+    vbias = new double[n_visible];
+    for(int i=0; i<n_visible; i++) vbias[i] = 0;
+
+}
+
 dA::~dA()
 {
     for(int i=0; i<n_hidden; i++) delete[] W[i];

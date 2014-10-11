@@ -1,3 +1,4 @@
+#include <iostream>
 
 #include "SdA.h"
 
@@ -33,8 +34,7 @@ SdA::SdA(int size, int n_i, int *hls, int n_o, int n_l)
         sigmoid_layers[i] = new HiddenLayer(N, input_size, hidden_layer_sizes[i], NULL, NULL);
 
         // construct dA_layer
-        dA_layers[i] = new dA(N, input_size, hidden_layer_sizes[i],\
-                              sigmoid_layers[i]->W, sigmoid_layers[i]->b, NULL);
+        dA_layers[i] = new dA(N, input_size, hidden_layer_sizes[i], sigmoid_layers[i]->W, sigmoid_layers[i]->b, NULL);
     }
 
     // layer for output using LogisticRegression
@@ -54,7 +54,7 @@ SdA::~SdA()
     delete[] dA_layers;
 }
 
-void SdA::pretrain(int *input, double lr, double corruption_level, int epochs)
+void SdA::pretrain(int** input, double lr, double corruption_level, int epochs)
 {
     int *layer_input;
     int prev_layer_input_size;
@@ -70,7 +70,7 @@ void SdA::pretrain(int *input, double lr, double corruption_level, int epochs)
             {
                 // initial input
                 for(int m=0; m<n_ins; m++)
-                    train_X[m] = input[n * n_ins + m];
+                    train_X[m] = input[n][m];
 
                 // layer input
                 for(int l=0; l<=i; l++)
@@ -112,7 +112,7 @@ void SdA::pretrain(int *input, double lr, double corruption_level, int epochs)
     delete[] layer_input;
 }
 
-void SdA::finetune(int *input, int *label, double lr, int epochs)
+void SdA::finetune(int** input, int** label, double lr, int epochs)
 {
     int *layer_input;
     int prev_layer_input_size;
@@ -127,10 +127,10 @@ void SdA::finetune(int *input, int *label, double lr, int epochs)
         {
             // initial input
             for(int m=0; m<n_ins; m++)
-                train_X[m] = input[n * n_ins + m];
+                train_X[m] = input[n][m];
 
             for(int m=0; m<n_outs; m++)
-                train_Y[m] = label[n * n_outs + m];
+                train_Y[m] = label[n][m];
 
             // layer input
             for(int i=0; i<n_layers; i++)

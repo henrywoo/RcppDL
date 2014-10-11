@@ -16,8 +16,7 @@ Version: \tab 0.0.1\cr
 Date: \tab 2014-07-20\cr
 License: \tab GPL3 \cr
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+
 }
 \author{
 Qiang Kou, Yusuke Sugomori
@@ -25,15 +24,12 @@ Qiang Kou, Yusuke Sugomori
 Maintainer: Qiang Kou <qkou@umail.iu.edu>
 }
 \references{
-~~ Literature or other references for background information ~~
-}
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
-~~ the R documentation directory ~~
-\keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
-\examples{
+Y. Bengio, P. Lamblin, D. Popovici, H. Larochelle: Greedy Layer-Wise
+Training of Deep Networks, Advances in Neural Information Processing
+Systems 19, 2007
 
+P. Vincent, H. Larochelle, Y. Bengio, P.A. Manzagol: Extracting and
+Composing Robust Features with Denoising Autoencoders, ICML' 08, 1096-1103, 2008
 }
+
+\keyword{ package }
