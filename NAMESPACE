@@ -2,4 +2,14 @@ useDynLib(RcppDL)
 exportPattern("^[[:alpha:]]+")
 import(methods, Rcpp)
 
-exportClasses("sda")
+exportMethods(PretrainLearningRate,
+              predict,
+              finetune,
+              pretrain,
+              CorruptionLevel,
+              PretrainingEpochs,
+              FinetuneLearningRate,
+              FinetuneEpochs)
+
+exportClasses("deeplearning",
+              "sda")

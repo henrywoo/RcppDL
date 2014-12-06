@@ -1,2 +1,9 @@
-
 setGeneric("summary", function(object) standardGeneric("summary"))
+setGeneric("PretrainLearningRate", function(object) standardGeneric("PretrainLearningRate"))
+setGeneric("CorruptionLevel", function(object) standardGeneric("CorruptionLevel"))
+setGeneric("PretrainingEpochs", function(object) standardGeneric("PretrainingEpochs"))
+setGeneric("FinetuneLearningRate", function(object) standardGeneric("FinetuneLearningRate"))
+setGeneric("FinetuneEpochs", function(object) standardGeneric("FinetuneEpochs"))
+setGeneric("pretrain", function(object) standardGeneric("pretrain"))
+setGeneric("finetune", function(object) standardGeneric("finetune"))
+setGeneric("predict", function(object, test) standardGeneric("predict"))
