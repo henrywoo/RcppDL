@@ -7,11 +7,15 @@
 #include <vector>
 #include <algorithm>
 
+#include <Rcpp.h>
+
 inline double uniform(double min, double max) {
-    return rand() / (RAND_MAX + 1.0) * (max - min) + min;
+	Rcpp::RNGScope scope;
+    return R::runif(min, max);
 }
 
 inline int binomial(int n, double p) {
+    Rcpp::RNGScope scope;
     if (p < 0 || p > 1)
         return 0;
 
@@ -19,7 +23,7 @@ inline int binomial(int n, double p) {
     double r;
 
     for (int i = 0; i < n; i++) {
-        r = rand() / (RAND_MAX + 1.0);
+        r = R::runif(0, RAND_MAX) / (RAND_MAX + 1.0);
         if (r < p)
             c++;
     }
