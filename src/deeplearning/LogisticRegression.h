@@ -2,10 +2,9 @@
 #define LR_H_
 
 
-class LogisticRegression
-{
+class LogisticRegression {
 
-public:
+  public:
     int N;
     int n_in;
     int n_out;

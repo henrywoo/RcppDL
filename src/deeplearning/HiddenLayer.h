@@ -3,10 +3,9 @@
 
 #include "utils.h"
 
-class HiddenLayer
-{
+class HiddenLayer {
 
-public:
+  public:
     int N;
     int n_in;
     int n_out;

@@ -6,10 +6,9 @@
 
 #include "utils.h"
 
-class RBM
-{
+class RBM {
 
-public:
+  public:
     int N;
     int n_visible;
     int n_hidden;

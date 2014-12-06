@@ -3,10 +3,9 @@
 
 #include "utils.h"
 
-class dA
-{
+class dA {
 
-public:
+  public:
     dA(int, int, int , double**, double*, double*);
     dA(int, int, int);
     ~dA();
@@ -15,8 +14,8 @@ public:
     void get_reconstructed_input(double*, double*);
     void train(int*, double, double);
     void reconstruct(int*, double*);
-    
-private:
+
+  private:
     int N;
     int n_visible;
     int n_hidden;

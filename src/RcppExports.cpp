@@ -7,8 +7,7 @@ using namespace Rcpp;
 
 // rcpp_sda
 NumericMatrix rcpp_sda(SEXP x, SEXP y, double pretrain_lr, double corruption_level, int pretraining_epochs, double finetune_lr, int finetune_epochs, SEXP hidden, SEXP test);
-RcppExport SEXP RcppDL_rcpp_sda(SEXP xSEXP, SEXP ySEXP, SEXP pretrain_lrSEXP, SEXP corruption_levelSEXP, SEXP pretraining_epochsSEXP, SEXP finetune_lrSEXP, SEXP finetune_epochsSEXP, SEXP hiddenSEXP, SEXP testSEXP)
-{
+RcppExport SEXP RcppDL_rcpp_sda(SEXP xSEXP, SEXP ySEXP, SEXP pretrain_lrSEXP, SEXP corruption_levelSEXP, SEXP pretraining_epochsSEXP, SEXP finetune_lrSEXP, SEXP finetune_epochsSEXP, SEXP hiddenSEXP, SEXP testSEXP) {
     BEGIN_RCPP
     SEXP __sexp_result;
     {

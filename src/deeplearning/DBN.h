@@ -9,10 +9,9 @@
 #include "RBM.h"
 #include "LogisticRegression.h"
 
-class DBN
-{
+class DBN {
 
-public:
+  public:
     int N;
     int n_ins;
     int *hidden_layer_sizes;

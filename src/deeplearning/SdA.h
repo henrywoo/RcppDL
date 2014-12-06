@@ -9,10 +9,9 @@
 #include "dA.h"
 #include "LogisticRegression.h"
 
-class SdA
-{
+class SdA {
 
-public:
+  public:
     int N;
     int n_ins;
     int *hidden_layer_sizes;

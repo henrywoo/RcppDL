@@ -5,8 +5,7 @@
 using namespace std;
 
 // SdA
-SdA::SdA(int size, int n_i, int *hls, int n_o, int n_l)
-{
+SdA::SdA(int size, int n_i, int *hls, int n_o, int n_l) {
     int input_size;
 
     N = size;
@@ -19,14 +18,10 @@ SdA::SdA(int size, int n_i, int *hls, int n_o, int n_l)
     dA_layers = new dA*[n_layers];
 
     // construct multi-layer
-    for(int i=0; i<n_layers; i++)
-    {
-        if(i == 0)
-        {
+    for(int i=0; i<n_layers; i++) {
+        if(i == 0) {
             input_size = n_ins;
-        }
-        else
-        {
+        } else {
             input_size = hidden_layer_sizes[i-1];
         }
 
@@ -41,12 +36,10 @@ SdA::SdA(int size, int n_i, int *hls, int n_o, int n_l)
     log_layer = new LogisticRegression(N, hidden_layer_sizes[n_layers-1], n_outs);
 }
 
-SdA::~SdA()
-{
+SdA::~SdA() {
     delete log_layer;
 
-    for(int i=0; i<n_layers; i++)
-    {
+    for(int i=0; i<n_layers; i++) {
 
         delete dA_layers[i];
     }
@@ -54,34 +47,26 @@ SdA::~SdA()
     delete[] dA_layers;
 }
 
-void SdA::pretrain(int** input, double lr, double corruption_level, int epochs)
-{
+void SdA::pretrain(int** input, double lr, double corruption_level, int epochs) {
     int *layer_input;
     int prev_layer_input_size;
     int *prev_layer_input;
 
     int *train_X = new int[n_ins];
 
-    for(int i=0; i<n_layers; i++)    // layer-wise
-    {
-        for(int epoch=0; epoch<epochs; epoch++)    // training epochs
-        {
-            for(int n=0; n<N; n++)   // input x1...xN
-            {
+    for(int i=0; i<n_layers; i++) {  // layer-wise
+        for(int epoch=0; epoch<epochs; epoch++) {  // training epochs
+            for(int n=0; n<N; n++) { // input x1...xN
                 // initial input
                 for(int m=0; m<n_ins; m++)
                     train_X[m] = input[n][m];
 
                 // layer input
-                for(int l=0; l<=i; l++)
-                {
-                    if(l == 0)
-                    {
+                for(int l=0; l<=i; l++) {
+                    if(l == 0) {
                         layer_input = new int[n_ins];
                         for(int j=0; j<n_ins; j++) layer_input[j] = train_X[j];
-                    }
-                    else
-                    {
+                    } else {
                         if(l == 1)
                             prev_layer_input_size = n_ins;
                         else
@@ -112,8 +97,7 @@ void SdA::pretrain(int** input, double lr, double corruption_level, int epochs)
     delete[] layer_input;
 }
 
-void SdA::finetune(int** input, int** label, double lr, int epochs)
-{
+void SdA::finetune(int** input, int** label, double lr, int epochs) {
     int *layer_input;
     int prev_layer_input_size;
     int *prev_layer_input;
@@ -121,10 +105,8 @@ void SdA::finetune(int** input, int** label, double lr, int epochs)
     int *train_X = new int[n_ins];
     int *train_Y = new int[n_outs];
 
-    for(int epoch=0; epoch<epochs; epoch++)
-    {
-        for(int n=0; n<N; n++)   // input x1...xN
-        {
+    for(int epoch=0; epoch<epochs; epoch++) {
+        for(int n=0; n<N; n++) { // input x1...xN
             // initial input
             for(int m=0; m<n_ins; m++)
                 train_X[m] = input[n][m];
@@ -133,17 +115,13 @@ void SdA::finetune(int** input, int** label, double lr, int epochs)
                 train_Y[m] = label[n][m];
 
             // layer input
-            for(int i=0; i<n_layers; i++)
-            {
-                if(i == 0)
-                {
+            for(int i=0; i<n_layers; i++) {
+                if(i == 0) {
                     prev_layer_input = new int[n_ins];
 
                     for(int j=0; j<n_ins; j++)
                         prev_layer_input[j] = train_X[j];
-                }
-                else
-                {
+                } else {
                     prev_layer_input = new int[hidden_layer_sizes[i-1]];
 
                     for(int j=0; j<hidden_layer_sizes[i-1]; j++)
@@ -170,8 +148,7 @@ void SdA::finetune(int** input, int** label, double lr, int epochs)
     delete[] train_Y;
 }
 
-void SdA::predict(int *x, double *y)
-{
+void SdA::predict(int *x, double *y) {
     double *layer_input;
     int prev_layer_input_size;
     double *prev_layer_input;
@@ -182,16 +159,13 @@ void SdA::predict(int *x, double *y)
     for(int j=0; j<n_ins; j++) prev_layer_input[j] = x[j];
 
     // layer activation
-    for(int i=0; i<n_layers; i++)
-    {
+    for(int i=0; i<n_layers; i++) {
         layer_input = new double[sigmoid_layers[i]->n_out];
 
-        for(int k=0; k<sigmoid_layers[i]->n_out; k++)
-        {
+        for(int k=0; k<sigmoid_layers[i]->n_out; k++) {
             linear_output = 0.0;
 
-            for(int j=0; j<sigmoid_layers[i]->n_in; j++)
-            {
+            for(int j=0; j<sigmoid_layers[i]->n_in; j++) {
                 linear_output += sigmoid_layers[i]->W[k][j] * prev_layer_input[j];
             }
             linear_output += sigmoid_layers[i]->b[k];
@@ -199,20 +173,17 @@ void SdA::predict(int *x, double *y)
         }
         delete[] prev_layer_input;
 
-        if(i < n_layers-1)
-        {
+        if(i < n_layers-1) {
             prev_layer_input = new double[sigmoid_layers[i]->n_out];
             for(int j=0; j<sigmoid_layers[i]->n_out; j++) prev_layer_input[j] = layer_input[j];
             delete[] layer_input;
         }
     }
 
-    for(int i=0; i<log_layer->n_out; i++)
-    {
+    for(int i=0; i<log_layer->n_out; i++) {
         y[i] = 0;
 
-        for(int j=0; j<log_layer->n_in; j++)
-        {
+        for(int j=0; j<log_layer->n_in; j++) {
             y[i] += log_layer->W[i][j] * layer_input[j];
         }
 
