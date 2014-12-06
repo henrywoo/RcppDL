@@ -6,6 +6,6 @@ DLOBJECTS=\
 ./deeplearning/LogisticRegression.o \
 ./deeplearning/RBM.o
 
-RCPPDL= RcppExports.o rcpp_sda.o
+RCPPDL= RcppDL.o
 
 OBJECTS= $(RCPPDL) $(DLOBJECTS)
