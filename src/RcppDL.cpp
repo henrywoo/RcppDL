@@ -52,22 +52,6 @@ Rcpp::List RcppDA::show() {
            );
 }
 
-RCPP_MODULE(dA) {
-    using namespace Rcpp;
-
-    class_<RcppDA>("dA")
-    .constructor("Initialises a new Rccp dA object.")
-    .method("init", &RcppDA::init, "Initialises a new Rccp dA object.")
-    .method("summary", &RcppDA::show, "Summary abouth the dA object")
-    .method("train", &RcppDA::train, "Train the dA")
-    .method("reconstruct", &RcppDA::reconstruct, "dA reconstruct")
-    .method("setLearningRate", &RcppDA::setlr, "Set learning rate")
-    .method("setCorruptionLevel", &RcppDA::setcl, "Set corruption level")
-    .method("setTrainingEpochs", &RcppDA::setTE, "Set trainingepochs")
-    .method("setHiddenRepresentation", &RcppDA::setHidden, "Set hidden representation")
-    ;
-}
-
 RcppSDA::RcppSDA() {
     sda = (SdA *)malloc(sizeof(SdA *));
     pretrain_lr = 0.1;
@@ -132,24 +116,6 @@ Rcpp::List RcppSDA::show() {
                Rcpp::_["FinetuneLearningRate"]	= finetune_lr,
                Rcpp::_["FinetuneEpochs"]	= finetune_epochs
            );
-}
-
-RCPP_MODULE(Sda) {
-    using namespace Rcpp;
-
-    class_<RcppSDA>("Sda")
-    .constructor("Initialises a new Rccp Sda object.")
-    .method("init", &RcppSDA::init, "Initialises a new Rccp Sda object.")
-    .method("summary", &RcppSDA::show, "Summary abouth the Sda object")
-    .method("pretrain", &RcppSDA::pretrain, "Pretrain Sda")
-    .method("setPretrainEpochs", &RcppSDA::setPE, "Set pretrain epochs")
-    .method("setPretrainLearningRate", &RcppSDA::setPlr, "Set pretrain learning rate")
-    .method("setFinetuneEpochs", &RcppSDA::setFE, "Set finetune epochs")
-    .method("setFinetuneLearningRate", &RcppSDA::setFlr, "Set finetune learning rate")
-    .method("setCorruptionLevel", &RcppSDA::setcl, "Set corruption level rate")
-    .method("finetune", &RcppSDA::finetune, "Finetune Sda")
-    .method("predict", &RcppSDA::predict, "Sda prediction")
-    ;
 }
 
 RcppRBM::RcppRBM() {
@@ -225,4 +191,105 @@ void RcppDBN::init(SEXP x, SEXP y, SEXP hidden) {
     train_Y = as<int**>(y);
 
     dbn = new DBN(train_N, n_ins, &hidden_layer_sizes[0], n_outs, n_layers);
+}
+
+void RcppDBN::pretrain() {
+    dbn->pretrain(train_X, pretrain_lr, step, pretraining_epochs);
+}
+
+void RcppDBN::finetune() {
+    dbn->finetune(train_X, train_Y, finetune_lr, finetune_epochs);
+}
+
+NumericMatrix RcppDBN::predict(SEXP test) {
+    int ** test_X = as<int**>(test);
+    NumericMatrix t(test);
+    double ** test_Y;
+    int test_N = t.nrow();
+    test_Y = new double*[test_N];
+
+    for(int i=0; i< test_N; i++) {
+        test_Y[i] = new double[n_outs];
+        dbn->predict(test_X[i], test_Y[i]);
+    }
+
+    return wrap(test_Y, test_N, n_outs);
+}
+
+List RcppDBN::show() {
+    return Rcpp::List::create(
+               Rcpp::_["PretrainLearningRate"] = pretrain_lr,
+               Rcpp::_["PretrainingEpochs"] = pretraining_epochs,
+               Rcpp::_["FinetuneLearningRate"] = finetune_lr,
+               Rcpp::_["FinetuneEpochs"] = finetune_epochs,
+               Rcpp::_["Step"] = step
+           );
+}
+
+RCPP_MODULE(dA) {
+    using namespace Rcpp;
+
+    class_<RcppDA>("dA")
+    .constructor("Initialises a new Rccp dA object.")
+    .method("init", &RcppDA::init, "Initialises a new Rccp dA object.")
+    .method("summary", &RcppDA::show, "Summary abouth the dA object")
+    .method("train", &RcppDA::train, "Train the dA")
+    .method("reconstruct", &RcppDA::reconstruct, "dA reconstruct")
+    .method("setLearningRate", &RcppDA::setlr, "Set learning rate")
+    .method("setCorruptionLevel", &RcppDA::setcl, "Set corruption level")
+    .method("setTrainingEpochs", &RcppDA::setTE, "Set trainingepochs")
+    .method("setHiddenRepresentation", &RcppDA::setHidden, "Set hidden representation")
+    ;
+}
+
+RCPP_MODULE(Sda) {
+    using namespace Rcpp;
+
+    class_<RcppSDA>("Sda")
+    .constructor("Initialises a new Rccp Sda object.")
+    .method("init", &RcppSDA::init, "Initialises a new Rccp Sda object.")
+    .method("summary", &RcppSDA::show, "Summary abouth the Sda object")
+    .method("pretrain", &RcppSDA::pretrain, "Pretrain Sda")
+    .method("setPretrainEpochs", &RcppSDA::setPE, "Set pretrain epochs")
+    .method("setPretrainLearningRate", &RcppSDA::setPlr, "Set pretrain learning rate")
+    .method("setFinetuneEpochs", &RcppSDA::setFE, "Set finetune epochs")
+    .method("setFinetuneLearningRate", &RcppSDA::setFlr, "Set finetune learning rate")
+    .method("setCorruptionLevel", &RcppSDA::setcl, "Set corruption level rate")
+    .method("finetune", &RcppSDA::finetune, "Finetune Sda")
+    .method("predict", &RcppSDA::predict, "Sda prediction")
+    ;
+}
+
+RCPP_MODULE(Rbm) {
+    using namespace Rcpp;
+
+    class_<RcppRBM>("Rbm")
+    .constructor("Initialises a new Rccp Rbm object.")
+    .method("init", &RcppRBM::init, "Initialises a new Rccp Rbm object.")
+    .method("summary", &RcppRBM::show, "Summary abouth the Rbm object")
+    .method("train", &RcppRBM::train, "Train the Rbm object")
+    .method("reconstruct", &RcppRBM::reconstruct, "Reconstruct the Rbm object")
+    .method("setLearningRate", &RcppRBM::setlr, "Set learning rate")
+    .method("setTrainingEpochs", &RcppRBM::setTE, "Set trainingepochs")
+    .method("setHiddenRepresentation", &RcppRBM::setHidden, "Set hidden representation")
+    .method("setStep", &RcppRBM::setStep, "Set contrastive divergence step")
+    ;
+}
+
+RCPP_MODULE(Dbn) {
+    using namespace Rcpp;
+
+    class_<RcppDBN>("Dbn")
+    .constructor("Initialises a new Rccp Rbm object.")
+    .method("init", &RcppDBN::init, "Initialises a new Rccp Rbm object.")
+    .method("summary", &RcppDBN::show, "Summary abouth the Rbm object")
+    .method("pretrain", &RcppDBN::pretrain, "Pretrain DBN")
+    .method("finetune", &RcppDBN::finetune, "Finetune DBN")
+    .method("predict", &RcppDBN::predict, "DBN prediction")
+    .method("setPretrainEpochs", &RcppDBN::setPE, "Set pretrain epochs")
+    .method("setPretrainLearningRate", &RcppDBN::setPlr, "Set pretrain learning rate")
+    .method("setFinetuneEpochs", &RcppDBN::setFE, "Set finetune epochs")
+    .method("setFinetuneLearningRate", &RcppDBN::setFlr, "Set finetune learning rate")
+    .method("setStep", &RcppDBN::setStep, "Set contrastive divergence step")
+    ;
 }

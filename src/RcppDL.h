@@ -8,7 +8,6 @@
 #include "deeplearning/DBN.h"
 
 class RcppDA {
-
   public:
     RcppDA();
     void init(SEXP x);
@@ -89,12 +88,25 @@ class RcppSDA {
 };
 
 class RcppRBM {
+
   public:
     RcppRBM();
     void init(SEXP x);
     void train();
     Rcpp::NumericMatrix reconstruct(SEXP test);
     Rcpp::List show();
+    void setlr(double lr) {
+        learning_rate = lr;
+    };
+    void setTE(int t) {
+        training_epochs = t;
+    };
+    void setStep(int t) {
+        step = t;
+    };
+    void setHidden(int h) {
+        n_hidden = h;
+    };
 
   private:
     RBM * rbm;
@@ -115,6 +127,22 @@ class RcppDBN {
     void pretrain();
     void finetune();
     Rcpp::NumericMatrix predict(SEXP test);
+    Rcpp::List show();
+    void setPlr(double plr) {
+        pretrain_lr = plr;
+    };
+    void setPE(int p) {
+        pretraining_epochs = p;
+    };
+    void setFlr(double flr) {
+        flr = finetune_lr;
+    };
+    void setFE(int t) {
+        finetune_epochs = t;
+    };
+    void setStep(int t) {
+        step = t;
+    };
 
   private:
     DBN * dbn;
