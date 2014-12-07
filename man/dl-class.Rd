@@ -2,6 +2,10 @@
 \docType{class}
 \alias{deeplearning-class}
 \alias{da-class}
+\alias{dA}
+\alias{Sda}
+\alias{Rbm}
+\alias{Dbn}
 \alias{sda-class}
 \alias{rbm-class}
 \alias{dbn-class}
@@ -22,9 +26,9 @@
 \alias{train,da-method}
 \alias{reconstruct,da,matrix-method}
 \alias{setCorruptionLevel,da,numeric-method}
-
-
-
+\alias{setTrainingEpochs,da,numeric-method}
+\alias{setLearningRate,da,numeric-method}
+\alias{setHiddenRepresentation,da,numeric-method}
 \alias{summary,sda-method}
 \alias{CorruptionLevel,sda-method}
 \alias{LearningRate,sda-method}
@@ -36,8 +40,10 @@
 \alias{finetune,sda-method}
 \alias{predict,sda,matrix-method}
 \alias{setCorruptionLevel,sda,numeric-method}
-
-
+\alias{setFinetuneEpochs,sda,numeric-method}
+\alias{setFinetuneLearningRate,sda,numeric-method}
+\alias{setPretrainLearningRate,sda,numeric-method}
+\alias{setPretrainEpochs,sda,numeric-method}
 \alias{summary,rbm-method}
 \alias{TrainingEpochs,rbm-method}
 \alias{LearningRate,rbm-method}
@@ -45,6 +51,7 @@
 \alias{Step,rbm-method}
 \alias{train,rbm-method}
 \alias{reconstruct,rbm,matrix-method}
+\alias{setStep,rbm,matrix-method}
 
 \alias{summary,dbn-method}
 \alias{LearningRate,dbn-method}
@@ -56,7 +63,10 @@
 \alias{pretrain,dbn-method}
 \alias{finetune,dbn-method}
 \alias{predict,dbn,matrix-method}
-
+\alias{setFinetuneEpochs,dbn,numeric-method}
+\alias{setFinetuneLearningRate,dbn,numeric-method}
+\alias{setStep,dbn,numeric-method}
+\alias{setPretrainEpochs,dbn,numeric-method}
 
 
 \title{Class \code{deeplearning} and sub-classes}
@@ -82,6 +92,9 @@
     \item{LearningRate}{\code{signature(object = "da")}: ... }
     \item{reconstruct}{\code{signature(object = "da", test = "matrix")}: ... }
     \item{setCorruptionLevel}{\code{signature(object = "da", cl = "numeric")}: ... }
+    \item{setTrainingEpochs}{\code{signature(object = "da", te = "numeric")}: ... }
+    \item{setLearningRate}{\code{signature(object = "da", lr = "numeric")}: ... }
+    \item{setHiddenRepresentation}{\code{signature(object = "da", h = "numeric")}: ... }
   }
   Methods currently implemented for \code{sda}
   \describe{
@@ -93,7 +106,11 @@
     \item{LearningRate}{\code{signature(object = "sda")}: ... }
     \item{FinetuneEpochs}{\code{signature(object = "sda")}: ... }
     \item{FinetuneLearningRate}{\code{signature(object = "sda")}: ... }
-    \item{setCorruptionLevel}{\code{signature(object = "da", cl = "numeric")}: ... }
+    \item{setCorruptionLevel}{\code{signature(object = "sda", cl = "numeric")}: ... }
+    \item{setFinetuneEpochs}{\code{signature(object = "sda", fe = "numeric")}: ... }
+    \item{setFinetuneLearningRate}{\code{signature(object = "sda", flr = "numeric")}: ... }
+    \item{setPretrainLearningRate}{\code{signature(object = "sda", plr = "numeric")}: ... }
+    \item{setPretrainEpochs}{\code{signature(object = "sda", pe = "numeric")}: ... }
   }
   Methods currently implemented for \code{rbm}
   \describe{
@@ -101,6 +118,7 @@
     \item{train}{\code{signature(object = "rbm")}: ... }
     \item{LearningRate}{\code{signature(object = "rbm")}: ... }
     \item{reconstruct}{\code{signature(object = "rbm", test = "matrix")}: ... }
+    \item{setStep}{\code{signature(object = "rbm", s = "numeric")}: ... }
   }
   Methods currently implemented for \code{dbn}
   \describe{
@@ -111,6 +129,10 @@
     \item{LearningRate}{\code{signature(object = "dbn")}: ... }
     \item{FinetuneEpochs}{\code{signature(object = "dbn")}: ... }
     \item{FinetuneLearningRate}{\code{signature(object = "dbn")}: ... }
+    \item{setFinetuneEpochs}{\code{signature(object = "dbn", fe = "numeric")}: ... }
+    \item{setFinetuneLearningRate}{\code{signature(object = "dbn", flr = "numeric")}: ... }
+    \item{setStep}{\code{signature(object = "dbn", s = "numeric")}: ... }
+    \item{setPretrainEpochs}{\code{signature(object = "dbn", pe = "numeric")}: ... }
   }
 }
 

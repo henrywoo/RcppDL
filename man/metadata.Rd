@@ -4,6 +4,8 @@
 \alias{PretrainingEpochs}
 \alias{FinetuneLearningRate}
 \alias{FinetuneEpochs}
+\alias{Step}
+\alias{HiddenRepresentation}
 
 \title{
   Access the metadata from a \code{deeplearning} object.
@@ -15,16 +17,17 @@ CorruptionLevel(object)
 PretrainingEpochs(object)
 FinetuneLearningRate(object)
 FinetuneEpochs(object)
+Step(object)
+HiddenRepresentation(object)
 }
 \arguments{
   \item{object}{An instantiated \code{deeplearning} object.}
 }
 
 \description{
-  Accessors to the analytical setup metadata of a run.
+  Accessors to the metadata of a \code{deeplearning} object.
   \code{summary} will show a summary of the paramters as a named list,
-  including \code{PretrainLearningRate}, \code{CorruptionLevel}, \code{PretrainingEpochs},
-  \code{FinetuneLearningRate}, \code{FinetuneEpochs}.
+  and other functions will return corresponding features.
 }
 
 \author{
