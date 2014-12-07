@@ -10,7 +10,7 @@
 #include <Rcpp.h>
 
 inline double uniform(double min, double max) {
-	Rcpp::RNGScope scope;
+    Rcpp::RNGScope scope;
     return R::runif(min, max);
 }
 

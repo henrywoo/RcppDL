@@ -6,16 +6,70 @@
 #include "util.h"
 #include "deeplearning/SdA.h"
 
+class RcppDA {
+
+  public:
+    RcppDA();
+    void init(SEXP x);
+    void train();
+    Rcpp::NumericMatrix reconstruct(SEXP test);
+    Rcpp::List show();
+    void setlr(double lr) {
+        learning_rate = lr;
+    };
+    void setcl(double cl) {
+        corruption_level = cl;
+    };
+    void setTE(int te) {
+        training_epochs = te;
+    };
+    void setHidden(int h) {
+        n_hidden = h;
+    };
+
+  private:
+    dA * da;
+    int ** train_X;
+    double learning_rate;
+    double corruption_level;
+    int training_epochs;
+    int train_N;
+    int test_N;
+    int n_visible;
+    int n_hidden;
+
+};
+
+
 class RcppSDA {
 
   public:
-
     RcppSDA();
     void init(SEXP x, SEXP y, SEXP hidden);
     void pretrain();
     void finetune();
     Rcpp::NumericMatrix predict(SEXP test);
     Rcpp::List show();
+
+    void setPlr(double plr) {
+        pretrain_lr = plr;
+    };
+
+    void setFlr(double flr) {
+        finetune_lr = flr;
+    };
+
+    void setcl(double cl) {
+        corruption_level = cl;
+    };
+
+    void setPE(int pe) {
+        pretraining_epochs = pe;
+    };
+
+    void setFE(int fe) {
+        finetune_epochs = fe;
+    };
 
   private:
     SdA * sda;

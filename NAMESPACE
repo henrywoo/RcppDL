@@ -3,13 +3,27 @@ exportPattern("^[[:alpha:]]+")
 import(methods, Rcpp)
 
 exportMethods(PretrainLearningRate,
+              LearningRate,
+              TrainingEpochs,
               predict,
               finetune,
               pretrain,
+              train,
+              reconstruct,
               CorruptionLevel,
               PretrainingEpochs,
               FinetuneLearningRate,
-              FinetuneEpochs)
+              FinetuneEpochs,
+              HiddenRepresentation,
+              setPretrainLearningRate,
+              setPretrainEpochs,
+              setFinetuneLearningRate,
+              setFinetuneEpochs,
+              setCorruptionLevel,
+              setLearningRate,
+              setTrainingEpochs,
+              setHiddenRepresentation)
 
 exportClasses("deeplearning",
-              "sda")
+              "sda",
+              "da")

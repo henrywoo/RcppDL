@@ -50,6 +50,36 @@ setMethod("predict",
           function(object,test) {
             return(object@backend$predict(test))
           })
+          
+setMethod("setPretrainLearningRate",
+          signature=c("sda","numeric"),
+          function(object, plr) {
+            return(object@backend$setPretrainLearningRate(plr))
+          })
+
+setMethod("setPretrainEpochs",
+          signature=c("sda","numeric"),
+          function(object, pe) {
+            return(object@backend$setPretrainEpochs(pe))
+          })
+          
+setMethod("setFinetuneLearningRate",
+          signature=c("sda","numeric"),
+          function(object, flr) {
+            return(object@backend$setFinetuneLearningRate(flr))
+          })     
+          
+setMethod("setFinetuneEpochs",
+          signature=c("sda","numeric"),
+          function(object, fe) {
+            return(object@backend$setFinetuneEpochs(fe))
+          })                
+
+setMethod("setCorruptionLevel",
+          signature=c("sda","numeric"),
+          function(object, cl) {
+            return(object@backend$setCorruptionLevel(cl))
+          })  
 
 Rsda <- function(x, y, hidden){
     sdaModule <- new(Sda)
