@@ -3,17 +3,18 @@
 \alias{RcppDL}
 \docType{package}
 \title{
-Deep learning package using Rcpp
+Deep learning methods using Rcpp
 }
 \description{
-Deep learning package using Rcpp
+R integration of some deep learning methods, 
+including denoising autoencoder, stacked denoising autoencoder, RBM and DBN.
 }
 \details{
 \tabular{ll}{
 Package: \tab RcppDL\cr
 Type: \tab Package\cr
-Version: \tab 0.0.1\cr
-Date: \tab 2014-07-20\cr
+Version: \tab 0.0.2\cr
+Date: \tab 2014-12-7\cr
 License: \tab GPL3 \cr
 }
 
