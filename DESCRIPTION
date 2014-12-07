@@ -7,7 +7,7 @@ Author: Qiang Kou, Yusuke Sugomori
 Maintainer: Qiang Kou <qkou@umail.iu.edu>
 Description: R integration of some deep learning methods, 
              including denoising autoencoder, stacked denoising autoencoder, RBM and DBN.
-License: GPL (>= 2)
+License: GPL-3
 Imports: methods, Rcpp (>= 0.11.2)
 LinkingTo: Rcpp
 URL: https://github.com/thirdwing/RcppDL

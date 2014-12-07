@@ -15,7 +15,7 @@ Package: \tab RcppDL\cr
 Type: \tab Package\cr
 Version: \tab 0.0.2\cr
 Date: \tab 2014-12-7\cr
-License: \tab GPL3 \cr
+License: \tab GPL-3 \cr
 }
 
 }
