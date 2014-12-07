@@ -22,8 +22,8 @@ class DBN {
     LogisticRegression *log_layer;
     DBN(int, int, int*, int, int);
     ~DBN();
-    void pretrain(int*, double, int, int);
-    void finetune(int*, int*, double, int);
+    void pretrain(int**, double, int, int);
+    void finetune(int**, int**, double, int);
     void predict(int*, double*);
 };
 

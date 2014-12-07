@@ -167,3 +167,62 @@ void RcppRBM::init(SEXP x) {
     n_visible = xx.ncol();
     rbm = new RBM(train_N, n_visible, n_hidden, NULL, NULL, NULL);
 }
+
+void RcppRBM::train() {
+
+    for(int epoch = 0; epoch < training_epochs; epoch++) {
+        for(int i=0; i<train_N; i++) {
+            rbm->contrastive_divergence(train_X[i], learning_rate, step);
+        }
+    }
+}
+
+NumericMatrix RcppRBM::reconstruct(SEXP test) {
+    int ** test_X = as<int**>(test);
+    NumericMatrix t(test);
+    double ** reconstructed_X;
+    int test_N = t.nrow();
+    reconstructed_X = new double*[test_N];
+    for(int i = 0; i < test_N; i++) {
+        rbm->reconstruct(test_X[i], reconstructed_X[i]);
+    }
+    return wrap(reconstructed_X, test_N, n_visible);
+}
+
+List RcppRBM::show() {
+    return Rcpp::List::create(
+               Rcpp::_["LearningRate"] = learning_rate,
+               Rcpp::_["Step"] = step,
+               Rcpp::_["TrainingEpochs"] = training_epochs,
+               Rcpp::_["Hidden"] = n_hidden
+           );
+}
+
+RcppDBN::RcppDBN() {
+
+    dbn = (DBN *)malloc(sizeof(DBN *));
+    pretrain_lr = 0.1;
+    pretraining_epochs = 1000;
+    step = 1;
+    finetune_lr = 0.1;
+    finetune_epochs = 500;
+}
+
+void RcppDBN::init(SEXP x, SEXP y, SEXP hidden) {
+
+    NumericMatrix xx(x);
+    NumericMatrix yy(y);
+
+    train_N = xx.nrow();
+    n_ins = xx.ncol();
+    n_outs = yy.ncol();
+
+    hidden_layer_sizes = Rcpp::as<std::vector<int> >(hidden);
+
+    int n_layers = 	hidden_layer_sizes.size();
+
+    train_X = as<int**>(x);
+    train_Y = as<int**>(y);
+
+    dbn = new DBN(train_N, n_ins, &hidden_layer_sizes[0], n_outs, n_layers);
+}

@@ -42,7 +42,7 @@ DBN::~DBN() {
 }
 
 
-void DBN::pretrain(int *input, double lr, int k, int epochs) {
+void DBN::pretrain(int **input, double lr, int k, int epochs) {
     int *layer_input;
     int prev_layer_input_size;
     int *prev_layer_input;
@@ -53,7 +53,7 @@ void DBN::pretrain(int *input, double lr, int k, int epochs) {
         for(int epoch=0; epoch<epochs; epoch++) {
             for(int n=0; n<N; n++) {
                 for(int m=0; m<n_ins; m++)
-                    train_X[m] = input[n * n_ins + m];
+                    train_X[m] = input[n][m];
 
                 for(int l=0; l<=i; l++) {
                     if(l == 0) {
@@ -88,7 +88,7 @@ void DBN::pretrain(int *input, double lr, int k, int epochs) {
     delete[] layer_input;
 }
 
-void DBN::finetune(int *input, int *label, double lr, int epochs) {
+void DBN::finetune(int **input, int **label, double lr, int epochs) {
     int *layer_input;
 
     int *prev_layer_input;
@@ -98,8 +98,8 @@ void DBN::finetune(int *input, int *label, double lr, int epochs) {
 
     for(int epoch=0; epoch<epochs; epoch++) {
         for(int n=0; n<N; n++) {
-            for(int m=0; m<n_ins; m++)  train_X[m] = input[n * n_ins + m];
-            for(int m=0; m<n_outs; m++) train_Y[m] = label[n * n_outs + m];
+            for(int m=0; m<n_ins; m++)  train_X[m] = input[n][m];
+            for(int m=0; m<n_outs; m++) train_Y[m] = label[n][m];
 
             for(int i=0; i<n_layers; i++) {
                 if(i == 0) {

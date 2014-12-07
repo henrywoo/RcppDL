@@ -111,11 +111,27 @@ class RcppDBN {
 
   public:
     RcppDBN();
-    void init();
+    void init(SEXP x, SEXP y, SEXP hidden);
+    void pretrain();
+    void finetune();
+    Rcpp::NumericMatrix predict(SEXP test);
 
   private:
-
     DBN * dbn;
+    int ** train_X;
+    int ** train_Y;
+
+    double pretrain_lr;
+    int pretraining_epochs;
+    double finetune_lr;
+    int finetune_epochs;
+
+    int step;
+
+    int train_N;
+    int n_ins;
+    int n_outs;
+    std::vector<int> hidden_layer_sizes;
 };
 
 #endif
