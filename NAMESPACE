@@ -26,4 +26,6 @@ exportMethods(PretrainLearningRate,
 
 exportClasses("deeplearning",
               "sda",
-              "da")
+              "da",
+              "rbm",
+              "dbn")

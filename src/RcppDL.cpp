@@ -158,9 +158,9 @@ NumericMatrix RcppRBM::reconstruct(SEXP test) {
 List RcppRBM::show() {
     return Rcpp::List::create(
                Rcpp::_["LearningRate"] = learning_rate,
-               Rcpp::_["Step"] = step,
+               Rcpp::_["ContrastiveDivergenceStep"] = step,
                Rcpp::_["TrainingEpochs"] = training_epochs,
-               Rcpp::_["Hidden"] = n_hidden
+               Rcpp::_["HiddenRepresentation"] = n_hidden
            );
 }
 
@@ -222,7 +222,7 @@ List RcppDBN::show() {
                Rcpp::_["PretrainingEpochs"] = pretraining_epochs,
                Rcpp::_["FinetuneLearningRate"] = finetune_lr,
                Rcpp::_["FinetuneEpochs"] = finetune_epochs,
-               Rcpp::_["Step"] = step
+               Rcpp::_["ContrastiveDivergenceStep"] = step
            );
 }
 
