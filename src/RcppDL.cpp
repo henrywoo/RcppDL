@@ -134,7 +134,6 @@ Rcpp::List RcppSDA::show() {
            );
 }
 
-RCPP_EXPOSED_CLASS_NODECL(RcppSDA)
 RCPP_MODULE(Sda) {
     using namespace Rcpp;
 
@@ -151,4 +150,20 @@ RCPP_MODULE(Sda) {
     .method("finetune", &RcppSDA::finetune, "Finetune Sda")
     .method("predict", &RcppSDA::predict, "Sda prediction")
     ;
+}
+
+RcppRBM::RcppRBM() {
+    rbm = (RBM *)malloc(sizeof(RBM *));
+    learning_rate = 0.1;
+    training_epochs = 1000;
+    step = 1;
+    n_hidden = 3;
+}
+
+void RcppRBM::init(SEXP x) {
+    train_X = as<int**>(x);
+    NumericMatrix xx(x);
+    train_N = xx.nrow();
+    n_visible = xx.ncol();
+    rbm = new RBM(train_N, n_visible, n_hidden, NULL, NULL, NULL);
 }

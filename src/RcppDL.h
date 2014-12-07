@@ -5,6 +5,7 @@
 
 #include "util.h"
 #include "deeplearning/SdA.h"
+#include "deeplearning/DBN.h"
 
 class RcppDA {
 
@@ -85,6 +86,36 @@ class RcppSDA {
     int n_outs;
     std::vector<int> hidden_layer_sizes;
 
+};
+
+class RcppRBM {
+  public:
+    RcppRBM();
+    void init(SEXP x);
+    void train();
+    Rcpp::NumericMatrix reconstruct(SEXP test);
+    Rcpp::List show();
+
+  private:
+    RBM * rbm;
+    double learning_rate;
+    int training_epochs;
+    int step;
+    int n_hidden;
+    int n_visible;
+    int ** train_X;
+    int train_N;
+};
+
+class RcppDBN {
+
+  public:
+    RcppDBN();
+    void init();
+
+  private:
+
+    DBN * dbn;
 };
 
 #endif
