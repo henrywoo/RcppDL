@@ -14,8 +14,8 @@ setMethod("reconstruct",
 
 setMethod("setLearningRate",
           signature=c("da","numeric"),
-          function(object, lr) {
-            return(object@backend$setLearningRate(lr))
+          function(object, x) {
+            return(object@backend$setLearningRate(x))
           })
 
 setMethod("LearningRate",
@@ -27,8 +27,8 @@ setMethod("LearningRate",
 
 setMethod("setTrainingEpochs",
           signature=c("da","numeric"),
-          function(object, te) {
-            return(object@backend$setTrainingEpochs(te))
+          function(object, x) {
+            return(object@backend$setTrainingEpochs(x))
           })
 
 setMethod("TrainingEpochs",
@@ -40,8 +40,8 @@ setMethod("TrainingEpochs",
 
 setMethod("setHiddenRepresentation",
           signature=c("da","numeric"),
-          function(object, h) {
-            return(object@backend$setHiddenRepresentation(h))
+          function(object, x) {
+            return(object@backend$setHiddenRepresentation(x))
           })
 
 setMethod("HiddenRepresentation",
@@ -53,8 +53,8 @@ setMethod("HiddenRepresentation",
 
 setMethod("setCorruptionLevel",
           signature=c("da","numeric"),
-          function(object, cl) {
-            return(object@backend$setCorruptionLevel(cl))
+          function(object, x) {
+            return(object@backend$setCorruptionLevel(x))
           })  
 
 setMethod("CorruptionLevel",

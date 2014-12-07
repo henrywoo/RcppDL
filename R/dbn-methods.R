@@ -46,32 +46,32 @@ setMethod("predict",
           
 setMethod("setPretrainLearningRate",
           signature=c("dbn","numeric"),
-          function(object, plr) {
-            return(object@backend$setPretrainLearningRate(plr))
+          function(object, x) {
+            return(object@backend$setPretrainLearningRate(x))
           })
 
 setMethod("setPretrainEpochs",
           signature=c("dbn","numeric"),
-          function(object, pe) {
-            return(object@backend$setPretrainEpochs(pe))
+          function(object, x) {
+            return(object@backend$setPretrainEpochs(x))
           })
           
 setMethod("setFinetuneLearningRate",
           signature=c("dbn","numeric"),
-          function(object, flr) {
-            return(object@backend$setFinetuneLearningRate(flr))
+          function(object, x) {
+            return(object@backend$setFinetuneLearningRate(x))
           })     
           
 setMethod("setFinetuneEpochs",
           signature=c("dbn","numeric"),
-          function(object, fe) {
-            return(object@backend$setFinetuneEpochs(fe))
+          function(object, x) {
+            return(object@backend$setFinetuneEpochs(x))
           })                
 
 setMethod("setStep",
           signature=c("dbn","numeric"),
-          function(object, s) {
-            return(object@backend$setStep(s))
+          function(object, x) {
+            return(object@backend$setStep(x))
           })
 
 setMethod("Step",

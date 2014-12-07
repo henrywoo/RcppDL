@@ -1,4 +1,4 @@
-\name{dl-methods}
+\name{deeplearning-methods}
 \alias{Rda}
 \alias{Rsda}
 \alias{Rrbm}
@@ -40,7 +40,11 @@
 }
 
 \description{
-
+  \code{Rda}, \code{Rsda}, \code{Rrbm} and \code{Rdbn} will return an instantiated \code{deeplearning} object
+  for denoising autoencoder, stacked denoising autoencoder, restricted Boltzmann machine and deep belief net.
+  \code{train} and \code{reconstruct} are for training and reconstructing from denoising autoencoder and restricted Boltzmann machine;
+  \code{pretrain}, \code{finetune} and \code{predict} are used for pretraining, finetuning and predicting
+  using stacked denoising autoencoder and deep belief net.
 }
 
 \author{

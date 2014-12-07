@@ -53,32 +53,32 @@ setMethod("predict",
           
 setMethod("setPretrainLearningRate",
           signature=c("sda","numeric"),
-          function(object, plr) {
-            return(object@backend$setPretrainLearningRate(plr))
+          function(object, x) {
+            return(object@backend$setPretrainLearningRate(x))
           })
 
 setMethod("setPretrainEpochs",
           signature=c("sda","numeric"),
-          function(object, pe) {
-            return(object@backend$setPretrainEpochs(pe))
+          function(object, x) {
+            return(object@backend$setPretrainEpochs(x))
           })
           
 setMethod("setFinetuneLearningRate",
           signature=c("sda","numeric"),
-          function(object, flr) {
-            return(object@backend$setFinetuneLearningRate(flr))
+          function(object, x) {
+            return(object@backend$setFinetuneLearningRate(x))
           })     
           
 setMethod("setFinetuneEpochs",
           signature=c("sda","numeric"),
-          function(object, fe) {
-            return(object@backend$setFinetuneEpochs(fe))
+          function(object, x) {
+            return(object@backend$setFinetuneEpochs(x))
           })                
 
 setMethod("setCorruptionLevel",
           signature=c("sda","numeric"),
-          function(object, cl) {
-            return(object@backend$setCorruptionLevel(cl))
+          function(object, x) {
+            return(object@backend$setCorruptionLevel(x))
           })  
 
 setMethod("LearningRate",

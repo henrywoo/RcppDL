@@ -14,8 +14,8 @@ setMethod("reconstruct",
 
 setMethod("setLearningRate",
           signature=c("rbm","numeric"),
-          function(object, lr) {
-            return(object@backend$setLearningRate(lr))
+          function(object, x) {
+            return(object@backend$setLearningRate(x))
           })
 
 setMethod("LearningRate",
@@ -27,8 +27,8 @@ setMethod("LearningRate",
 
 setMethod("setTrainingEpochs",
           signature=c("rbm","numeric"),
-          function(object, te) {
-            return(object@backend$setTrainingEpochs(te))
+          function(object, x) {
+            return(object@backend$setTrainingEpochs(x))
           })
 
 setMethod("TrainingEpochs",
@@ -40,8 +40,8 @@ setMethod("TrainingEpochs",
 
 setMethod("setHiddenRepresentation",
           signature=c("rbm","numeric"),
-          function(object, h) {
-            return(object@backend$setHiddenRepresentation(h))
+          function(object, x) {
+            return(object@backend$setHiddenRepresentation(x))
           })
 
 setMethod("HiddenRepresentation",
@@ -53,8 +53,8 @@ setMethod("HiddenRepresentation",
 
 setMethod("setStep",
           signature=c("rbm","numeric"),
-          function(object, s) {
-            return(object@backend$setStep(s))
+          function(object, x) {
+            return(object@backend$setStep(x))
           })
 
 setMethod("Step",
