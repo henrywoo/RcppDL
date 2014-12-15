@@ -3,18 +3,21 @@
 \alias{RcppDL}
 \docType{package}
 \title{
-Deep learning methods using Rcpp
+Deep Learning Methods via Rcpp
 }
 \description{
-R integration of some deep learning methods, 
-including denoising autoencoder, stacked denoising autoencoder, RBM and DBN.
+This package is based on the C++ code from Yusuke Sugomori,
+which implements basic machine learning methods with 
+many layers (deep learning), including dA (Denoising Autoencoder), 
+SdA (Stacked Denoising Autoencoder), RBM (Restricted Boltzmann machine) and 
+DBN (Deep Belief Nets).
 }
 \details{
 \tabular{ll}{
 Package: \tab RcppDL\cr
 Type: \tab Package\cr
-Version: \tab 0.0.2\cr
-Date: \tab 2014-12-7\cr
+Version: \tab 0.0.3\cr
+Date: \tab 2014-12-12\cr
 License: \tab GPL-3 \cr
 }
 
