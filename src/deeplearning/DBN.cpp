@@ -79,13 +79,13 @@ void DBN::pretrain(int **input, double lr, int k, int epochs) {
                 }
 
                 rbm_layers[i]->contrastive_divergence(layer_input, lr, k);
+                delete[] layer_input;
             }
 
         }
     }
 
     delete[] train_X;
-    delete[] layer_input;
 }
 
 void DBN::finetune(int **input, int **label, double lr, int epochs) {
@@ -108,20 +108,20 @@ void DBN::finetune(int **input, int **label, double lr, int epochs) {
                 } else {
                     prev_layer_input = new int[hidden_layer_sizes[i-1]];
                     for(int j=0; j<hidden_layer_sizes[i-1]; j++) prev_layer_input[j] = layer_input[j];
-                    delete[] layer_input;
+                    //delete[] layer_input;
                 }
-
 
                 layer_input = new int[hidden_layer_sizes[i]];
                 sigmoid_layers[i]->sample_h_given_v(prev_layer_input, layer_input);
                 delete[] prev_layer_input;
+                delete[] layer_input;
             }
 
             log_layer->train(layer_input, train_Y, lr);
         }
     }
 
-    delete[] layer_input;
+    
     delete[] train_X;
     delete[] train_Y;
 }
