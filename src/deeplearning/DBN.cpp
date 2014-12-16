@@ -34,7 +34,7 @@ DBN::~DBN() {
     delete log_layer;
 
     for(int i=0; i<n_layers; i++) {
-
+        delete sigmoid_layers[i];
         delete rbm_layers[i];
     }
     delete[] sigmoid_layers;

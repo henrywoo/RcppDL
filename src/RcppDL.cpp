@@ -166,12 +166,23 @@ List RcppRBM::show() {
 
 RcppDBN::RcppDBN() {
 
-    dbn = (DBN *)malloc(sizeof(DBN *));
+    dbn = NULL;
     pretrain_lr = 0.1;
     pretraining_epochs = 1000;
     step = 1;
     finetune_lr = 0.1;
     finetune_epochs = 500;
+}
+
+RcppDBN::~RcppDBN() {
+	dbn->~DBN();
+	delete dbn;
+	for(int i = 0; i < train_N; i++){
+		delete train_X[i];
+		delete train_Y[i];
+	}
+	delete[] train_X;
+	delete[] train_Y;
 }
 
 void RcppDBN::init(SEXP x, SEXP y, SEXP hidden) {

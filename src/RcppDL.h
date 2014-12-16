@@ -123,6 +123,7 @@ class RcppDBN {
 
   public:
     RcppDBN();
+    ~RcppDBN();
     void init(SEXP x, SEXP y, SEXP hidden);
     void pretrain();
     void finetune();
