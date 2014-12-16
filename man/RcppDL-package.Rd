@@ -16,7 +16,7 @@ DBN (Deep Belief Nets).
 \tabular{ll}{
 Package: \tab RcppDL\cr
 Type: \tab Package\cr
-Version: \tab 0.0.3\cr
+Version: \tab 0.0.4\cr
 Date: \tab 2014-12-12\cr
 License: \tab GPL-3 \cr
 }

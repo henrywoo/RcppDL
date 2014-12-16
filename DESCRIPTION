@@ -1,7 +1,7 @@
 Package: RcppDL
 Type: Package
 Title: Deep Learning Methods via Rcpp
-Version: 0.0.3
+Version: 0.0.4
 Date: 2014-12-12
 Author: Qiang Kou, Yusuke Sugomori
 Maintainer: Qiang Kou <qkou@umail.iu.edu>

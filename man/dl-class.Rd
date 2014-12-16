@@ -145,11 +145,11 @@
 
 \examples{
  data(test)
- dbn_test <- Rdbn(train_X, train_Y, hidden)
- summary(dbn_test)
- LearningRate(dbn_test)
- pretrain(dbn_test)
- finetune(dbn_test)
- predict(dbn_test, test_X)
+ sda_test <- Rsda(train_X, train_Y, hidden)
+ summary(sda_test)
+ LearningRate(sda_test)
+ pretrain(sda_test)
+ finetune(sda_test)
+ predict(sda_test, test_X)
 }
 \keyword{classes}
