@@ -88,13 +88,13 @@ void SdA::pretrain(int** input, double lr, double corruption_level, int epochs) 
                 }
 
                 dA_layers[i]->train(layer_input, lr, corruption_level);
-
+				delete[] layer_input;
             }
         }
     }
 
     delete[] train_X;
-    delete[] layer_input;
+    //delete[] layer_input;
 }
 
 void SdA::finetune(int** input, int** label, double lr, int epochs) {
@@ -139,11 +139,12 @@ void SdA::finetune(int** input, int** label, double lr, int epochs) {
             }
 
             log_layer->train(layer_input, train_Y, lr);
+            delete[] layer_input;
         }
 
     }
 
-    delete[] layer_input;
+    //delete[] layer_input;
     delete[] train_X;
     delete[] train_Y;
 }
