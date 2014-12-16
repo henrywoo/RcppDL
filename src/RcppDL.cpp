@@ -211,9 +211,19 @@ NumericMatrix RcppDBN::predict(SEXP test) {
     for(int i=0; i< test_N; i++) {
         test_Y[i] = new double[n_outs];
         dbn->predict(test_X[i], test_Y[i]);
+        delete test_X[i];
     }
 
-    return wrap(test_Y, test_N, n_outs);
+    NumericMatrix res = wrap(test_Y, test_N, n_outs);
+    
+    for(int i=0; i< test_N; i++) {
+		delete test_Y[i];
+	}
+	
+	delete[] test_Y;
+	delete[] test_X;
+    
+    return res;
 }
 
 List RcppDBN::show() {
