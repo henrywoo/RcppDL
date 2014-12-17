@@ -44,13 +44,26 @@ RBM::~RBM() {
     delete[] vbias;
 }
 
-void RBM::contrastive_divergence(int *input, double lr, int k) {
-    double *ph_mean = new double[n_hidden];
-    int *ph_sample = new int[n_hidden];
-    double *nv_means = new double[n_visible];
-    int *nv_samples = new int[n_visible];
-    double *nh_means = new double[n_hidden];
-    int *nh_samples = new int[n_hidden];
+void RBM::contrastive_divergence(int * input, double lr, int k) {
+    
+    double * ph_mean = new double[n_hidden];
+    memset(ph_mean, 0.0, sizeof(double) * n_hidden);
+    
+    int * ph_sample = new int[n_hidden];
+    memset(ph_sample, 0, sizeof(int) * n_hidden);
+    
+    double * nv_means = new double[n_visible];
+    memset(nv_means, 0.0, sizeof(double) * n_visible);
+    
+    int * nv_samples = new int[n_visible];
+    memset(nv_samples, 0, sizeof(int) * n_visible);
+    
+    double * nh_means = new double[n_hidden];
+    memset(nh_means, 0.0, sizeof(double) * n_hidden);
+    
+    int * nh_samples = new int[n_hidden];
+	memset(nh_samples, 0, sizeof(int) * n_hidden);
+
 
     sample_h_given_v(input, ph_mean, ph_sample);
 
@@ -82,7 +95,7 @@ void RBM::contrastive_divergence(int *input, double lr, int k) {
     delete[] nh_samples;
 }
 
-void RBM::sample_h_given_v(int *v0_sample, double *mean, int *sample) {
+void RBM::sample_h_given_v(int * v0_sample, double *mean, int *sample) {
     for(int i=0; i<n_hidden; i++) {
         mean[i] = propup(v0_sample, W[i], hbias[i]);
         sample[i] = binomial(1, mean[i]);

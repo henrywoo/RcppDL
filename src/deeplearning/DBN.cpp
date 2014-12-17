@@ -71,6 +71,7 @@ void DBN::pretrain(int **input, double lr, int k, int epochs) {
                         delete[] layer_input;
 
                         layer_input = new int[hidden_layer_sizes[l-1]];
+                        memset(layer_input, 0, sizeof(int) * hidden_layer_sizes[l-1]);
 
                         sigmoid_layers[l-1]->sample_h_given_v(prev_layer_input, layer_input);
 

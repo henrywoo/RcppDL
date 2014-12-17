@@ -39,7 +39,7 @@ NumericMatrix RcppDA::reconstruct(SEXP test) {
     for(int i = 0; i< test_N; i++) {
         reconstructed_X[i] = new double[n_visible];
         da->reconstruct(test_X[i], reconstructed_X[i]);
-        delete test_X[i];
+        delete[] test_X[i];
     }
     
     delete[] test_X;
@@ -47,7 +47,7 @@ NumericMatrix RcppDA::reconstruct(SEXP test) {
     NumericMatrix res = wrap(reconstructed_X, test_N, n_visible);
     
     for(int i = 0; i< test_N; i++) {
-		delete reconstructed_X[i];
+		delete[] reconstructed_X[i];
 	}
     
     delete[] reconstructed_X;
@@ -115,13 +115,13 @@ NumericMatrix RcppSDA::predict(SEXP test) {
     for(int i=0; i< test_N; i++) {
         test_Y[i] = new double[n_outs];
         sda->predict(test_X[i], test_Y[i]);
-        delete test_X[i];
+        delete[] test_X[i];
     }
 
 	NumericMatrix res = wrap(test_Y, test_N, n_outs);
 	
 	for(int i=0; i< test_N; i++) {
-		delete test_Y[i];
+		delete[] test_Y[i];
 	}
 	
 	delete[] test_X;
@@ -174,13 +174,13 @@ NumericMatrix RcppRBM::reconstruct(SEXP test) {
     for(int i = 0; i < test_N; i++) {
 		reconstructed_X[i] = new double[t.ncol()];
         rbm->reconstruct(test_X[i], reconstructed_X[i]);
-        delete test_X[i];
+        delete[] test_X[i];
     }
     
     NumericMatrix res = wrap(reconstructed_X, test_N, n_visible);
     
     for(int i = 0; i < test_N; i++) {
-		delete reconstructed_X[i];
+		delete[] reconstructed_X[i];
 	}
     
     delete[] test_X;
@@ -245,13 +245,13 @@ NumericMatrix RcppDBN::predict(SEXP test) {
     for(int i=0; i< test_N; i++) {
         test_Y[i] = new double[n_outs];
         dbn->predict(test_X[i], test_Y[i]);
-        delete test_X[i];
+        delete [] test_X[i];
     }
 
 	NumericMatrix res = wrap(test_Y, test_N, n_outs);
 	
 	for(int i=0; i< test_N; i++) {
-		delete test_Y[i];
+		delete [] test_Y[i];
 	}
 	
 	delete[] test_X;

@@ -24,6 +24,7 @@ HiddenLayer::HiddenLayer(int size, int in, int out, double **w, double *bp) {
 
     if(bp == NULL) {
         b = new double[n_out];
+        memset(b, 0.0, sizeof(double) * n_out);
     } else {
         b = bp;
     }
